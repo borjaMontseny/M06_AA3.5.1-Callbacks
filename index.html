@@ -10,13 +10,14 @@
     <input type="number" id="valorA"><br><br>
     <label for="html">Valor B</label><br>
     <input type="number" id="valorB"><br><br>
-    <button onclick="collectAndCalc(suma)">Sumar</button>
-    <button onclick="collectAndCalc(resta)">Restar</button>
-    <button onclick="collectAndCalc(multiplicar)">Multiplicar</button>
-    <button onclick="collectAndCalc(dividir)">Dividir</button>
+    <button
+        onclick="calc(suma, parseFloat(document.getElementById('valorA').value), parseFloat(document.getElementById('valorB').value), eval(document.querySelector('input[name=\'resultat\']:checked').value))">Sumar</button>
+    <button onclick="calc(resta, parseFloat(document.getElementById('valorA').value), parseFloat(document.getElementById('valorB').value), eval(document.querySelector('input[name=\'resultat\']:checked').value))">Restar</button>
+    <button onclick="calc(multiplicar, parseFloat(document.getElementById('valorA').value), parseFloat(document.getElementById('valorB').value), eval(document.querySelector('input[name=\'resultat\']:checked').value))">Multiplicar</button>
+    <button onclick="calc(dividir, parseFloat(document.getElementById('valorA').value), parseFloat(document.getElementById('valorB').value), eval(document.querySelector('input[name=\'resultat\']:checked').value))">Dividir</button>
     <br>
     <br>
-    <input type="radio" id="consola" name="resultat" value="consola" checked onchange="">
+    <input type="radio" id="consola" name="resultat" value="console" checked onchange="">
     <label for="consola">Consola</label><br>
     <input type="radio" id="alert" name="resultat" value="alert">
     <label for="alert">Alert</label><br>
@@ -39,24 +40,25 @@
         }
 
         function calc(operacio, valorA, valorB, mostra) {
+            var valorA = parseFloat(valorA);
+            var valorB = parseFloat(valorB);
             mostra(operacio(valorA, valorB))
         }
 
-        function mostrarPerConsola(resultat) {
+        function console(resultat) {
             console.log(resultat)
         }
 
-        function mostrarPerAlerta(resultat) {
+        function alert(resultat) {
             alert(resultat)
         }
 
-        function collectAndCalc(operacio) {
-            var valorA = parseFloat(document.getElementById('valorA').value);
-            var valorB = parseFloat(document.getElementById('valorB').value);
-            radioValue = document.querySelector('input[name="resultat"]:checked').value;
-            if (radioValue == 'consola') calc(operacio, valorA, valorB, mostrarPerConsola);
-            if (radioValue == 'alert') calc(operacio, valorA, valorB, mostrarPerAlerta);
-        }
+        // function collectAndCalc(operacio) {
+        //     var valorA = parseFloat(document.getElementById('valorA').value);
+        //     var valorB = parseFloat(document.getElementById('valorB').value);
+        //     var radioValue = document.querySelector('input[name="resultat"]:checked').value;
+        //     calc(operacio, valorA, valorB, radioValue);
+        // }
     </script>
 </body>
 
