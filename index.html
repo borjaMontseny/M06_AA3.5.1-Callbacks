@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>Calculadora amb Callbacks</title>
+    <title>Callbacks</title>
 </head>
 
 <body>
@@ -10,15 +10,52 @@
     <input type="number" id="valorA"><br><br>
     <label for="html">Valor B</label><br>
     <input type="number" id="valorB"><br><br>
-
-    <button onclick="show('suma')">Sumar</button>
-    <button onclick="show('resta')">Restar</button>
-    <button onclick="show('multiplicar')">Multiplicar</button>
-    <button onclick="show('dividir')">Dividir</button>
+    <button onclick="collectAndCalc(suma)">Sumar</button>
+    <button onclick="collectAndCalc(resta)">Restar</button>
+    <button onclick="collectAndCalc(multiplicar)">Multiplicar</button>
+    <button onclick="collectAndCalc(dividir)">Dividir</button>
+    <br>
+    <br>
+    <input type="radio" id="consola" name="resultat" value="consola" checked onchange="">
+    <label for="consola">Consola</label><br>
+    <input type="radio" id="alert" name="resultat" value="alert">
+    <label for="alert">Alert</label><br>
 
     <script>
-        function suma(){
-            
+        function suma(valorA, valorB) {
+            return valorA + valorB;
+        }
+
+        function resta(valorA, valorB) {
+            return valorA - valorB;
+        }
+
+        function multiplicar(valorA, valorB) {
+            return valorA * valorB;
+        }
+
+        function dividir(valorA, valorB) {
+            return valorA / valorB;
+        }
+
+        function calc(operacio, valorA, valorB, mostra) {
+            mostra(operacio(valorA, valorB))
+        }
+
+        function mostrarPerConsola(resultat) {
+            console.log(resultat)
+        }
+
+        function mostrarPerAlerta(resultat) {
+            alert(resultat)
+        }
+
+        function collectAndCalc(operacio) {
+            var valorA = parseFloat(document.getElementById('valorA').value);
+            var valorB = parseFloat(document.getElementById('valorB').value);
+            radioValue = document.querySelector('input[name="resultat"]:checked').value;
+            if (radioValue == 'consola') calc(operacio, valorA, valorB, mostrarPerConsola);
+            if (radioValue == 'alert') calc(operacio, valorA, valorB, mostrarPerAlerta);
         }
     </script>
 </body>
